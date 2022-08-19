@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 CANVAS_WIDTH = canvas.width = 500;
 CANVAS_HEIGHT = canvas.height = 1000;
-const numberOfEnemies = 50
+const numberOfEnemies = 20
 const enemiesArray = [];
 
 
@@ -24,12 +24,13 @@ class Enemy {
         this.flapSpeed = Math.floor(Math.random() * 3 + 1); 
         this.angle = 0;
         this.angleSpeed = Math.random() * 0.2;
+        this.curve = Math.random() * 7;
     }
 
     update() {
         // Randomising the movement of each sprite
         this.x -= this.speed;
-        this.y += Math.sin(this.angle);
+        this.y += this.curve * Math.sin(this.angle);
         this.angle += 0.05;
         if (this.x + this.width < 0) this.x = canvas.width;
         // Animate sprites
